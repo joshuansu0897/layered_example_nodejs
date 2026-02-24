@@ -145,6 +145,3 @@ To run the test suite, use the following command:
 ```bash
 npm run test
 ```
-
-## AWS SDK v3
-To ensure long-term support and avoid maintenance mode warnings, this project uses the modular AWS SDK for JavaScript v3 (`@aws-sdk/client-sqs`) to handle interaction with Amazon SQS.
