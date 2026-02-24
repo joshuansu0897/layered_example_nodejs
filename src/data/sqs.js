@@ -1,8 +1,8 @@
 'use strict'
-const aws = require('aws-sdk')
+const { SQSClient, SendMessageCommand } = require('@aws-sdk/client-sqs')
 const logger = require('../utils/logger')
 
-const sqs = new aws.SQS({ 
+const sqsClient = new SQSClient({
   region: process.env.AWS_REGION,
   credentials: {
     accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -22,7 +22,8 @@ exports.sendMessageToSQS = async (msg) => {
 
   let response = null
   try {
-    response = await sqs.sendMessage(params).promise()
+    const command = new SendMessageCommand(params)
+    response = await sqsClient.send(command)
     logger.log('SQSPort', `Message sent to SQS with ID: ${response.MessageId}`)
   } catch (error) {
     logger.error('SQSPort', `Failed to send message to SQS: ${error.message}`)
