@@ -120,14 +120,31 @@ The project is structured as follows:
 ├───documentation
 │   └───img
 ├───infra
-└───src
+├───src
+│   ├───data
+│   ├───domain
+│   ├───transport
+│   └───utils
+└───tests
     ├───data
     ├───domain
     ├───transport
     └───utils
 ```
 
-- `data/`:How we interact with external systems (e.g., databases, external APIs).
+- `data/`: How we interact with external systems (e.g., databases, external APIs).
 - `domain/`: Contains the core business logic and use cases.
 - `transport/`: Handles communication with external clients (e.g., HTTP, WebSocket).
 - `utils/`: Contains utility functions and helpers.
+- `tests/`: Contains Jest unit tests for all layers.
+
+## Testing
+This project includes a comprehensive suite of unit tests built with **Jest**. The tests are designed to run in isolation by mocking external dependencies such as HTTP calls, SQS instances, and Socket.io.
+
+To run the test suite, use the following command:
+```bash
+npm run test
+```
+
+## AWS SDK v3
+To ensure long-term support and avoid maintenance mode warnings, this project uses the modular AWS SDK for JavaScript v3 (`@aws-sdk/client-sqs`) to handle interaction with Amazon SQS.
