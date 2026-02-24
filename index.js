@@ -1,3 +1,3 @@
 'use strict'
-require('./src/adapters/http')
-require('./src/adapters/socket')
+require('./src/transport/http')
+require('./src/transport/socket')
